@@ -24,13 +24,6 @@ with open(env_json_path, 'r', encoding='utf-8') as f:
 SECRET_KEY = json_data.get('SECRET_KEY', None)
 DATABASE = json_data.get('DATABASE', None)
 
-DATABASE = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": "os.path.join(BASE_DIR, 'db.sqlite3')"
-        }
-    },
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -111,9 +104,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 

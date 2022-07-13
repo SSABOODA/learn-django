@@ -1,3 +1,4 @@
 config/env.json
 .idea
 db.sqlite3
+*.pyc
