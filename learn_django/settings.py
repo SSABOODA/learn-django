@@ -16,13 +16,16 @@ import json
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-env_json_path = BASE_DIR + '/config/env.json'
+env_json_path = BASE_DIR + "/config/env.json"
+sqlite3_path = BASE_DIR + "db.sqlite3"
 
 with open(env_json_path, 'r', encoding='utf-8') as f:
     json_data = json.load(f)
 
 SECRET_KEY = json_data.get('SECRET_KEY', None)
 DATABASE = json_data.get('DATABASE', None)
+
+DATABASE['default']['NAME'] = os.path.join(BASE_DIR, 'db.sqlite3')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
