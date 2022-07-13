@@ -32,7 +32,12 @@ def get_secret(setting, env=json_data):
 
 
 SECRET_KEY = get_secret('SECRET_KEY')
-DATABASES = get_secret('DATABASES')
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 # SECRET_KEY = json_data.get('SECRET_KEY', None)
 # DATABASES = json_data.get('DATABASES', None)
