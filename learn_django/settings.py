@@ -17,14 +17,12 @@ import json
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 env_json_path = BASE_DIR + '/config/env.json'
-print(12312312312321)
+
 with open(env_json_path, 'r', encoding='utf-8') as f:
     json_data = json.load(f)
 
 SECRET_KEY = json_data.get('SECRET_KEY', None)
 DATABASE = json_data.get('DATABASE', None)
-
-print(DATABASE)
 
 DATABASE = {
         "default": {
