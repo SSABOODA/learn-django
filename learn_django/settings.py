@@ -139,3 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = ''  # TODO
+
+MEDIA_URL = '/media/'  # 파일에 접근할 때 사용
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 파일을 저장할 때 사용
