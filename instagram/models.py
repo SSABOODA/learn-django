@@ -4,7 +4,8 @@ from utils.media_lib import uuid_name_upload_to
 
 class InstagramPost(models.Model):
     message = models.TextField()
-    photo = models.ImageField(blank=True, upload_to='instagram/post/%Y/%m/%d')
+    # photo = models.ImageField(blank=True, upload_to='instagram/post/%Y/%m/%d')
+    photo = models.ImageField(blank=True, upload_to=uuid_name_upload_to)
     # photo = models.ImageField(blank=True, upload_to=uuid_name_upload_to())
     is_public = models.BooleanField(default=False, verbose_name='공개여부')
     created_at = models.DateTimeField(auto_now_add=True)
