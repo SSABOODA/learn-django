@@ -1,7 +1,16 @@
 import os
 from uuid import uuid4
 from django.db import models
+from django.conf import settings
 from django.utils import timezone
+
+# from django.contrib.auth.models import User
+"""
+- 장고에서 기본 제공하는 User Model 이 User를 직접 사용하는 것은 권장되지 않음.
+- 만약 내가 custom으로 유저 모델을 만들었다면 settings.py에 꼭 명시해줘야함.
+- settings.py에 현재 User Model로 명시되어 있는 것을 가져옴
+- AUTH_USER_MODEL은 프로젝트 초기에 설정해주는 것이 가장 BEST
+"""
 
 
 def uuid_name_upload_to(instance, filename):
@@ -21,6 +30,7 @@ def uuid_name_upload_to(instance, filename):
 
 
 class InstagramPost(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     message = models.TextField()
     # photo = models.ImageField(blank=True, upload_to='instagram/post/%Y/%m/%d')
     photo = models.ImageField(blank=True, upload_to=uuid_name_upload_to)
@@ -43,3 +53,23 @@ class InstagramPost(models.Model):
     # def message_length(self):
     #     return f'{len(self.message)}'
     # message_length.short_description = '메세지 글자수'
+
+
+class InstagramPostComment(models.Model):
+    post = models.ForeignKey(
+        InstagramPost,
+        on_delete=models.CASCADE,
+        # post model의 `is_public` field가 특정 값인 것만 지정할 수 있도록 하는 옵션
+        limit_choices_to={'is_public': True}
+    )
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'instagram_post_comment'
+        verbose_name = 'instagram 게시글 댓글'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return f'({self.pk}) Instagram 게시글 댓글'

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from .models import InstagramPost
+from .models import InstagramPost, InstagramPostComment
 
 """
 Admin Resister 방법
@@ -36,5 +36,6 @@ class InstagramPostAdmin(admin.ModelAdmin):
     message_length.short_description = '메세지 글자수'
 
 
-
-
+@admin.register(InstagramPostComment)
+class InstagramPostCommentAdmin(admin.ModelAdmin):
+    pass
