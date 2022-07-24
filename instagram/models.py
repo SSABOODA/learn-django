@@ -32,10 +32,10 @@ class InstagramPost(models.Model):
         db_table = 'instagram_post'
         verbose_name = 'Instagram 게시글'
         verbose_name_plural = verbose_name
+        ordering = ['-id']
 
     def __str__(self):
         return f'({self.pk}) Instagram 게시글'
-
 
     """
     자주 쓰는 로직이라면 model에서 구현 아니라면 admin에서 구현
