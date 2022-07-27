@@ -34,6 +34,7 @@ class InstagramPost(models.Model):
     message = models.TextField()
     # photo = models.ImageField(blank=True, upload_to='instagram/post/%Y/%m/%d')
     photo = models.ImageField(blank=True, upload_to=uuid_name_upload_to)
+    tag_set = models.ManyToManyField('tag', blank=True)
     is_public = models.BooleanField(default=False, verbose_name='공개여부')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -73,3 +74,15 @@ class InstagramPostComment(models.Model):
 
     def __str__(self):
         return f'({self.pk}) Instagram 게시글 댓글'
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    """
+    M2M 여기서 지정해도 되고 Post model에서 지정해도 됨
+    하지만 Tag를 활용하는 Model에서 지정해주는 것이 의미론상으로 조금 더 나아보임
+    """
+    # post_set = models.ManyToManyField(InstagramPost)
+
+    def __str__(self):
+        return self.name
