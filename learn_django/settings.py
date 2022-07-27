@@ -54,7 +54,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -89,10 +88,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'learn_django.urls'
 
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
+        # 'DIRS': [os.path.join(BASE_DIR, '..', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
