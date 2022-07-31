@@ -3,7 +3,10 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from .models import InstagramPost
 
-post_list = ListView.as_view(model=InstagramPost)
+post_list = ListView.as_view(
+    model=InstagramPost,
+    template_name="instagram/post_list.html",
+)
 
 # def post_list(request):
 #     # print(request)
